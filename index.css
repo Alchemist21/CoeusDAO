@@ -1,3 +1,7 @@
+body {
+  background-color: aqua;
+}
+
 h2, h4, h5 {
     text-align: center;
     font-weight: bold;
@@ -28,7 +32,7 @@ img {
   }
 
   .button1 {
-    background-color: rgb(85, 247, 182); 
+    background-color: rgb(47, 189, 132); 
     border: none;
     color: white;
     padding: 35px 32px;
@@ -40,7 +44,7 @@ img {
   }
 
   .button2 {
-    background-color:  rgb(245, 192, 94); 
+    background-color:  rgb(231, 161, 29); 
     border: none;
     color: white;
     padding: 35px 32px;
@@ -52,7 +56,7 @@ img {
   }
 
   .button3 {
-    background-color:  rgb(255, 190, 188); 
+    background-color:  rgb(214, 40, 34); 
     border: none;
     color: white;
     padding: 35px 32px;
@@ -64,7 +68,7 @@ img {
   }
 
   .button4 {
-    background-color:  rgb(197, 146, 223); 
+    background-color:  rgb(115, 20, 163); 
     border: none;
     color: white;
     padding: 35px 32px;
@@ -74,4 +78,28 @@ img {
     display: inline-block;
     font-size: 16px;
   }
-    
+   
+  header {
+    background-image: linear-gradient(rgb(10, 126, 146), rgb(30, 217, 241), rgb(0, 126, 146));
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+  
+}  
+  
+aside {
+  float: left;
+  width: 25%;
+  height: 70%;
+  margin: 20px;
+  padding: 50px;
+  text-align: center;
+  background-color: rgb(24, 155, 243);
+
+}
+
+.section #profile {
+  float: right;
+  padding:  10px; 
+  margin: 5px;  
+}
