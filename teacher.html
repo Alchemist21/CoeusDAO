@@ -32,6 +32,18 @@
         <!-- Install the Wyre Loader -->
         <script src="https://verify.sendwyre.com/js/widget-loader.js"></script>
         <script>
+          const CourseStatus = ["No", "Created"]
+          let submitTeacherCreation = {};
+          let submitValidatorCreation = {};
+          let submitCourseCreation = {};
+          let getCourse = {};
+          let castValidatorVote = {};
+          let getValidatorResult = {};
+          let applyForCourse = {};
+          let registerStudent = {};
+          let createHaslock = {};
+          let postTeacherScore = {};
+          let postStudentResult = {};
           // configure the widget for metamask authentication
           var widget = new Wyre.Widget({
             env: "test",
@@ -47,11 +59,167 @@
           document
             .getElementById("verifyButton")
             .addEventListener('click', function(e) { widget.open(); });
-          
-          //add on completed events here
-          widget.on('complete', function(event) {
-            console.log(event);
-          });
+
+          window.addEventListener('load', async () => {
+            if (window.ethereum) {
+              window.web3 = new Web3(ethereum);
+              await ethereum.enable();
+              const c = web3.eth.contract([ { "constant": true, "inputs": [ { "name": "", "type": "bytes32" }, { "name": "", "type": "address" } ], "name": "studentStatus", "outputs": [ { "name": "", "type": "uint8" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "bytes32" }, { "name": "", "type": "address" } ], "name": "applicationFunds", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "bytes32" }, { "name": "", "type": "bytes32" } ], "name": "lockedFunds", "outputs": [ { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "bytes32" }, { "name": "", "type": "address" } ], "name": "validatorStatus", "outputs": [ { "name": "", "type": "uint8" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" } ], "name": "teachersCourses", "outputs": [ { "name": "", "type": "bytes32" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "bytes32" } ], "name": "courses", "outputs": [ { "name": "status", "type": "uint8" }, { "name": "publicDataURI", "type": "string" }, { "name": "courseCostPerStudent", "type": "uint256" }, { "name": "startTime", "type": "uint256" }, { "name": "numberOfWeeks", "type": "uint256" }, { "name": "maxNumberOfStudents", "type": "uint256" }, { "name": "numberRegistered", "type": "uint256" }, { "name": "numberOfNewValidators", "type": "uint256" }, { "name": "admin", "type": "address" }, { "name": "teacher", "type": "address" }, { "name": "courseFeesCollected", "type": "uint256" }, { "name": "validatorFeesCollected", "type": "uint256" }, { "name": "studentsPay", "type": "bool" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" } ], "name": "validatorsCourses", "outputs": [ { "name": "", "type": "bytes32" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" } ], "name": "teachers", "outputs": [ { "name": "isEstablished", "type": "bool" }, { "name": "dataHash", "type": "bytes32" }, { "name": "scoreWeight", "type": "uint256" }, { "name": "currentScore", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" } ], "name": "validators", "outputs": [ { "name": "isEstablished", "type": "bool" }, { "name": "dataHash", "type": "bytes32" }, { "name": "publicDataURI", "type": "string" }, { "name": "successfulValidationsCount", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" } ], "name": "studentsCourses", "outputs": [ { "name": "", "type": "bytes32" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "dataHash", "type": "bytes32" } ], "name": "createTeacher", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "dataHash", "type": "bytes32" }, { "name": "publicDataURI", "type": "string" } ], "name": "createValidator", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "dataHash", "type": "bytes32" }, { "name": "publicDataURI", "type": "string" }, { "name": "courseCostPerStudent", "type": "uint256" }, { "name": "startTime", "type": "uint256" }, { "name": "numberOfWeeks", "type": "uint256" }, { "name": "maxNumberOfStudents", "type": "uint256" } ], "name": "createCourse", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [ { "name": "courseID", "type": "bytes32" }, { "name": "approved", "type": "bool" } ], "name": "castValidatorVote", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [ { "name": "courseID", "type": "bytes32" } ], "name": "getCourseValidations", "outputs": [ { "name": "", "type": "uint256" }, { "name": "", "type": "uint256" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "courseID", "type": "bytes32" } ], "name": "getValidatorResult", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "courseID", "type": "bytes32" } ], "name": "applyForCourse", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [ { "name": "courseID", "type": "bytes32" }, { "name": "student", "type": "address" } ], "name": "registerStudent", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "courseID", "type": "bytes32" } ], "name": "withdrawApplicationFees", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "courseID", "type": "bytes32" }, { "name": "score", "type": "uint256" }, { "name": "hashLock", "type": "bytes32" } ], "name": "postTeacherScore", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [ { "name": "courseID", "type": "bytes32" }, { "name": "student", "type": "address" }, { "name": "secretHash", "type": "bytes32" }, { "name": "passed", "type": "bool" } ], "name": "postStudentResult", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" } ]).at('0x6008eef0772da68483b7d63e95aa55ae9f2641ff')
+              /*web3.eth.sendTransaction({
+                from: '0x4E31A4c6233FFeb5Cb4806C04ACd7bb4324EaAf4',
+                data: ''
+              })*/
+              submitTeacherCreation = () => {
+                const fname = "John"//document.forms["teacherCreation"]["fname"]
+                const lname = "Snow"
+                const email = "jsnow@gmail.com"
+                const dID = web3.sha3(fname + " " + lname + " " + email);
+                c.createTeacher.sendTransaction(dID, {
+                  from: web3.eth.accounts[0]
+                },(e,h)=>{console.log(h)})
+              }
+              submitValidatorCreation = () => {
+                const fname = "Somes"//document.forms["teacherCreation"]["fname"]
+                const lname = "Dudes"
+                const email = "dt@gmail.com"
+                const dID = web3.sha3(fname + " " + lname + " " + email);
+                const url = "https://validator.com"
+                c.createValidator.sendTransaction(dID, url, {
+                  from: web3.eth.accounts[0]
+                },(e,h)=>{console.log(h)})
+              }
+              submitCourseCreation = () => {
+                const description = "Danerys"//document.forms["teacherCreation"]["fname"]
+                const label = "English"
+                const dID = web3.sha3(label + " " + description);
+                const url = "https://harvard.com"
+                const cost = 250
+                const startTime = 1558381867
+                const numberOfWeeks = 8
+                const maxStudents = 25
+                c.createCourse.sendTransaction(dID, url, cost, startTime, numberOfWeeks, maxStudents, {
+                  from: web3.eth.accounts[0],
+                  value: 1000
+                },(e,h)=>{console.log(h)})
+              }
+              castValidatorVote = () => {
+                const description = "Danerys"//document.forms["teacherCreation"]["fname"]
+                const label = "English"
+                const dID = web3.sha3(label + " " + description);
+                const vote = true;
+                c.castValidatorVote.sendTransaction(dID, vote, {
+                  from: web3.eth.accounts[0]
+                },(e,h)=>{console.log(h)})
+              }
+              getValidatorResult = () => {
+                const description = "Danerys"//document.forms["teacherCreation"]["fname"]
+                const label = "English"
+                const dID = web3.sha3(label + " " + description);
+                c.getValidatorResult.sendTransaction(dID, {
+                  from: web3.eth.accounts[0]
+                },(e,h)=>{console.log(h)})
+              }
+              applyForCourse = () => {
+                const description = "Danerys"//document.forms["teacherCreation"]["fname"]
+                const label = "English"
+                const dID = web3.sha3(label + " " + description);
+                c.applyForCourse.sendTransaction(dID, {
+                  from: web3.eth.accounts[0]
+                },(e,h)=>{console.log(h)})
+              }
+              registerStudent = () => {
+                const description = "Danerys"//document.forms["teacherCreation"]["fname"]
+                const label = "English"
+                const dID = web3.sha3(label + " " + description);
+                const student = "0xbE0809Fa26238537842474A4522A164dd6327562"
+                c.registerStudent.sendTransaction(dID, student, {
+                  from: web3.eth.accounts[0]
+                },(e,h)=>{console.log(h)})
+              }
+              createHashlock = () => {
+                const secret = "Some Secret"
+                const pass = true
+                let secretHash = web3.sha3(secret);
+                if(pass){
+                  secretHash = web3.sha3(secretHash+'01', {encoding: 'hex'})
+                } else {
+                  secretHash = web3.sha3(secretHash+'00', {encoding: 'hex'})
+                }
+                return secretHash
+              }
+              postTeacherScore = () => {
+                const description = "Danerys"//document.forms["teacherCreation"]["fname"]
+                const label = "English"
+                const dID = web3.sha3(label + " " + description);
+                const score = 3;
+                const hashLock = web3.sha3(web3.sha3("Some Secret")+'00', {encoding: 'hex'})
+                c.postTeacherScore.sendTransaction(dID, score, hashLock, {
+                  from: web3.eth.accounts[0]
+                },(e,h)=>{console.log(h)})
+              }
+              postStudentResult = () => {
+                const secret = "Some Secret"
+                const description = "Danerys"//document.forms["teacherCreation"]["fname"]
+                const label = "English"
+                const dID = web3.sha3(label + " " + description);
+                const student = "0xbE0809Fa26238537842474A4522A164dd6327562"
+                let secretHash = web3.sha3(secret);
+                const pass = true
+                c.postStudentResult.sendTransaction(dID, student, secretHash, pass, {
+                  from: web3.eth.accounts[0]
+                },(e,h)=>{console.log(h)})
+              }
+              //c.teachers.call(web3.eth.accounts[0],(e,r)=>{console.log(r)})
+              /*c.validators.call(web3.eth.accounts[0],(e,r)=>{
+                let v = {
+                  address: web3.eth.accounts[0],
+                  dataHash: r[1],
+                  dataURI: r[2],
+                  successfulValidations: r[3].toString()
+                }
+              })*/
+              getCourse = () => {
+                const description = "Danerys"//document.forms["teacherCreation"]["fname"]
+                const label = "English"
+                const dID = web3.sha3(label + " " + description);
+                c.courses.call(dID,(e,r)=>{
+                  let ct = {
+                    status: CourseStatus[r[0].toFixed()],
+                    dataURI: r[1],
+                    courseCostPerStudent: r[2].toString(),
+                    startTime: new Date(r[3].toNumber() * 1000).toDateString(),
+                    numberOfWeeks: r[4].toString(),
+                    maxNumberOfStudents: r[5].toString(),
+                    numberRegistered: r[6].toString(),
+                    numberOfNewValidators: r[7].toString(),
+                    admin: r[8],
+                    teacher: r[9],
+                    courseFeesCollected: r[10].toString(),
+                    validatorFeesCollected: r[11].toString(),
+                    studentsPay: r[12]
+                  }
+                  c.getCourseValidations.call(dID,(er,re)=>{
+                    ct.approvals = re[0].toString()
+                    ct.denials = re[1].toString()
+                    console.log(ct)
+                  })
+                })
+              }
+              
+              //console.log(web3.eth.abi)
+              //submitTeacherCreation()
+              //submitValidatorCreation()
+              //submitCourseCreation()
+              //getCourse()
+              //castValidatorVote()
+              //getValidatorResult()
+              //applyForCourse()
+              //registerStudent()
+              //createHashlock()
+              //postTeacherScore()
+              //postStudentResult()
+            }
+          })
         </script>
       </center>
 </body>
