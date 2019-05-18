@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+    <body>
+        <button id="verifyButton">Verify with Wyre!</button>
+        
+        <!-- Install the Wyre Loader -->
+        <script src="https://verify.sendwyre.com/js/widget-loader.js"></script>
+        <script>
+          // configure the widget for metamask authentication
+          var widget = new Wyre.Widget({
+            env: "test",
+            accountId: "YOUR_WYRE_ACCOUNT_ID",
+            auth: { type: "metamask" },
+            operation: {
+              type: "onramp",
+              destCurrency: "ETH"
+            }
+          });
+          
+          // open the widget when the user presses the button
+          document
+            .getElementById("verifyButton")
+            .addEventListener('click', function(e) { widget.open(); });
+          
+          //add on completed events here
+          widget.on('complete', function(event) {
+            console.log(event);
+          });
+        </script>
+      </body>
+</body>
+</html>
