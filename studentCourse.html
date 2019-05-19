@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
     <title>Student Course</title>
 </head>
 <body>
@@ -25,27 +26,35 @@
         </div>
       </nav>
       <center>
-     
-      <form action="#"> 
           
-        <h4>Student Study Course</h4>
-        <table>
-        <tr> 
-            <th> Course  :  </th>
-            <th> Solidity Programming Intermediate </th>
-        </tr> 
-        <tr>
-            <th> Content  :  </th>
-            <th> Solidity Programming is essential for any dApp Developer. This course will teach you how to create your first contract. </th>
-        </tr>
-       
-        <hr>
-        </table>
-        <br>
-        <input type="submit">
- 
-      </form>
-        <button> <a href="student.html">Back</a></button>
+        <h4>Search Courses Available</h4>
+        <form name="getACourse" onSubmit="return getCourse(null)" action="#"> 
+            <table>
+                <tr> 
+                    <th> Course Name: </th>
+                    <th> <input name="label" type="text"></th>
+                </tr> 
+                <tr>
+                    <th> Description: </th>
+                    <th>  <input name="description" type="text"></th>
+                </tr>
+                
+                <hr>
+            </table>
+            <br> <input type="submit">
+        </form>
+        <h4>Courses</h4>
+        <p id="status"></p>
+        <p id="dataURI"></p>
+        <p id="courseCostPerStudent"></p>
+        <p id="startTime"></p>
+        <p id="maxNumberOfStudents"></p>
+        <p id="numberOfWeeks"></p>
+        <p id="teacher"></p>
+        <button onclick="applyForCourse()">Apply</button>
+        <br><br> <button onclick="getStudentStatus()">See Status</button>
+        <p id="student"></p>
+        <br><br> <button> <a href="student.html">Back</a></button>
       <hr>
      
     </center>

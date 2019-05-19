@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
     <link rel="stylesheet" href="index.css">
     <title>Student Score</title>
 </head>
@@ -26,17 +27,25 @@
       </nav>
       <center>
      
-      <form action="#"> 
+      <form name="scoreTeacher" onSubmit="return publishTeacherScore()" action="#"> 
           
-        <h4>Student Score</h4>
+        <h4>Score Teacher</h4>
         <table>
         <tr> 
+            <th> Course Name: </th>
+            <th> <input name="label" type="text"></th>
+        </tr> 
+        <tr>
+            <th> Description: </th>
+            <th>  <input name="description" type="text"></th>
+        </tr>
+        <tr> 
             <th> Score :  </th>
-            <th> <input type="text"> </th>
+            <th> <input name="score" type="text"> </th>
         </tr> 
         <tr>
             <th> Hashlock  :  </th>
-            <th> <input type="text"> </th>
+            <th> <input name="hash" type="text"> </th>
         </tr>
        
         <hr>

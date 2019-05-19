@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
     <link rel="stylesheet" href="index.css">
     <title>Create Course</title>
 </head>
@@ -25,48 +26,43 @@
 
 
     <center>
-            <form action="#"> 
+            <form name="createCourse" onsubmit="return submitCourseCreation()" action="#"> 
               <h4>Create Course</h4>
               <table>
               <tr> 
                   <th> Subject Name: </th>
-                  <th> <input type="text"></th>
+                  <th> <input name="subject" type="text"></th>
               </tr> 
               <tr>
                       <th> Curriculum: </th>
-                      <th>  <input type="text"></th>
+                      <th>  <input name="description" type="text"></th>
               </tr>
               <tr>
                   <th> URL : </th>
-                  <th> <input type="email"> </th>
+                  <th> <input name="url" type="text"> </th>
               </tr>
 
               <tr>
                     <th> Cost : </th>
-                    <th> <input type="number"> </th>
+                    <th> <input name="cost" type="number"> </th>
 
               </tr>
 
               <tr>
                     <th> Start Time : </th>
-                    <th> <input type="time"> </th>
-
-              </tr>
-              <tr>
-                    <th> End Time : </th>
-                    <th> <input type="time"> </th>
+                    <th> <input name="starttime" type="text"> </th>
 
               </tr>
 
               <tr>
                     <th> Number of Weeks : </th>
-                    <th> <input type="number"> </th>
+                    <th> <input name="weeks" type="number"> </th>
 
               </tr>
 
               <tr>
                     <th> Maximum Students : </th>
-                    <th> <input type="number"> </th>
+                    <th> <input name="maxstudents" type="number"> </th>
 
               </tr>
               <hr>

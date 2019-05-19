@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
     <link rel="stylesheet" href="index.css">
-    <title>Create Name</title>
+    <title>Create Teacher</title>
 </head>
 <body>
       
@@ -25,20 +26,20 @@
         </div>
       </nav>
       <center>
-      <form action="#"> 
+      <form name="createTeacher" onsubmit="return submitTeacherCreation()" action="#"> 
         <h4>Create Teacher Profile</h4>
         <table>
         <tr> 
             <th> First Name: </th>
-            <th> <input type="text"></th>
+            <th> <input name="fname" type="text"></th>
         </tr> 
         <tr>
                 <th> Last Name: </th>
-                <th>  <input type="text"></th>
+                <th>  <input name="lname" type="text"></th>
         </tr>
         <tr>
             <th> Email : </th>
-            <th> <input type="email"> </th>
+            <th> <input name="email" type="email"> </th>
         </tr>
         
         <hr>
