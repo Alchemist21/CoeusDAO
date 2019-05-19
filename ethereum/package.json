@@ -1,0 +1,15 @@
+{
+  "name": "coeusdao",
+  "version": "0.0.1",
+  "description": "ETHNY Hack",
+  "scripts": {
+    "test": "node_modules/.bin/truffle develop"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ethereumjs-testrpc": "^6.0.3",
+    "json-loader": "^0.5.7",
+    "truffle": "^5.0.18"
+  }
+}
